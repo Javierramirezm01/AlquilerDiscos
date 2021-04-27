@@ -1,0 +1,107 @@
+<div class="container" id="advanced-search-form">
+    <ng-container *ngIf="!crearCliente; else formClientes">
+        <button type="button" class="btn btn-dark btn-sm" (click)="crearCliente = true">Crear cliente</button>
+        <table datatable [dtOptions]="dtOptions" class="row-border hover">
+          <thead>
+            <tr>
+             
+              <th>Nombres</th>
+              <th>Dirección</th>
+              <th>Telefono</th>
+              <th>Email</th>
+              <th>Fecha de nacimiento</th>
+              <th>Fecha de Inscripcion</th>
+              <th>Tema de Interes</th>
+              <th>Estado</th>
+              <th>DNI</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of lstCliente">
+              
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.direccion }}</td>
+              <td>{{ item.telefono }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.fechaNacimineto }}</td>
+              <td>{{ item.fechaInscripcion }}</td>
+              <td>{{ item.temaInteres }}</td>
+              <td>{{ item.estado }}</td>
+              <td>{{ item.nroDNI }}</td>
+              <td>
+                  <button type="button" class="btn btn-dark btn-sm" (click)="editCliente(item)">Editar</button>
+                  <button type="button" class="btn btn-outline-danger btn-sm" style="margin-left: 1%;" (click)="deleteCliente(item)">Deshabilitar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </ng-container>
+    <ng-template #formClientes>
+        <button type="button" class="btn btn-dark btn-sm" (click)="crearCliente = false">Ver clientes</button>
+        <form [formGroup]= "formulario"> 
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label">Nombres</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="Nombre" id="staticEmail" placeholder="Nombres">
+              </div>
+            </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Dirección</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control"  formControlName="Direccion" placeholder="Dirección">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Telefono</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control"  formControlName="Telefono" placeholder="Telefono">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" formControlName="Email" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Fecha de nacimiento</label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control"  formControlName="FechaNacimineto" placeholder="año/mes/dia">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Fecha de Inscripcion</label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control"  formControlName="FechaInscripcion" placeholder="año/mes/dia">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Tema de Interes</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control"  formControlName="TemaInteres" placeholder="Tema de Interes">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Estado</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control"  formControlName="Estado" placeholder="Estados">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">DNI</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control"  formControlName="NroDNI" placeholder="DNI">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <button type="button" (click)="AddCliente()" class="btn btn-secondary" >Guardar</button>
+                    <button type="button" (click)="updateCliente()" class="btn btn-secondary " style="margin-left: 2%;">Editar</button>
+                    <button type="button" class="btn btn-outline-dark" style="margin-left: 2%;">Cancelar</button>
+                </div>
+              </div>
+          </form>
+      </ng-template>
+    </div>
