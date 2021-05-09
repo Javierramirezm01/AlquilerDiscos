@@ -1,6 +1,6 @@
 <div class="container" id="advanced-search-form">
     <ng-container *ngIf="!crearCliente; else formClientes">
-        <button type="button" class="btn btn-dark btn-sm" (click)="crearCliente = true">Crear cliente</button>
+        <button type="button" class="btn btn-dark btn-sm" (click)="mostrarClientes()">Crear cliente</button>
         <table datatable [dtOptions]="dtOptions" class="row-border hover">
           <thead>
             <tr>
@@ -27,11 +27,11 @@
               <td>{{ item.fechaNacimineto }}</td>
               <td>{{ item.fechaInscripcion }}</td>
               <td>{{ item.temaInteres }}</td>
-              <td>{{ item.estado }}</td>
+              <td>{{ item.estado? 'Activo' : 'Inactivo' }}</td>
               <td>{{ item.nroDNI }}</td>
               <td>
                   <button type="button" class="btn btn-dark btn-sm" (click)="editCliente(item)">Editar</button>
-                  <button type="button" class="btn btn-outline-danger btn-sm" style="margin-left: 1%;" (click)="deleteCliente(item)">Deshabilitar</button>
+                  <button type="button" class="btn btn-outline-danger btn-sm" style="margin-left: 1%;" (click)="desactivarCliente(item)">Deshabilitar</button>
               </td>
             </tr>
           </tbody>
@@ -43,63 +43,90 @@
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-2 col-form-label">Nombres</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" formControlName="Nombre" id="staticEmail" placeholder="Nombres">
+                <input type="text" class="form-control" formControlName="Nombre" [ngClass]="{ 'is-invalid': submitted && f.Nombre.errors }" placeholder="Nombre">
+                <div *ngIf="submitted && f.Nombre.errors" class="invalid-feedback">
+                  <div *ngIf="f.Nombre.errors.required">El nombre es requerido</div>
+               </div>
               </div>
             </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Dirección</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control"  formControlName="Direccion" placeholder="Dirección">
+                  <input type="text" class="form-control"  formControlName="Direccion" [ngClass]="{ 'is-invalid': submitted && f.Direccion.errors }" placeholder="Dirección">
+                  <div *ngIf="submitted && f.Direccion.errors" class="invalid-feedback">
+                    <div *ngIf="f.Direccion.errors.required">La Direccion es requerida</div>
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Telefono</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control"  formControlName="Telefono" placeholder="Telefono">
+                  <input type="number" class="form-control"  formControlName="Telefono" [ngClass]="{ 'is-invalid': submitted && f.Telefono.errors }" placeholder="Telefono">
+                  <div *ngIf="submitted && f.Telefono.errors" class="invalid-feedback">
+                    <div *ngIf="f.Telefono.errors.required">El Telefono es requerido</div>
+                 </div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                  <input type="email" class="form-control" formControlName="Email" placeholder="Email">
+                  <input type="email" class="form-control" formControlName="Email" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" placeholder="Email">
+                  <div *ngIf="submitted && f.Email.errors" class="invalid-feedback">
+                    <div *ngIf="f.Email.errors.required">El Email es requerido</div>
+                 </div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Fecha de nacimiento</label>
                 <div class="col-sm-10">
-                  <input type="date" class="form-control"  formControlName="FechaNacimineto" placeholder="año/mes/dia">
+                  <input type="date" class="form-control"  formControlName="FechaNacimineto" [ngClass]="{ 'is-invalid': submitted && f.FechaNacimineto.errors }" placeholder="año/mes/dia">
+                  <div *ngIf="submitted && f.FechaNacimineto.errors" class="invalid-feedback">
+                    <div *ngIf="f.FechaNacimineto.errors.required">La Fecha de Nacimiento es requerida</div>
+                 </div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Fecha de Inscripcion</label>
                 <div class="col-sm-10">
-                  <input type="date" class="form-control"  formControlName="FechaInscripcion" placeholder="año/mes/dia">
+                  <input type="date" class="form-control"  formControlName="FechaInscripcion" [ngClass]="{ 'is-invalid': submitted && f.FechaInscripcion.errors }" placeholder="año/mes/dia">
+                  <div *ngIf="submitted && f.FechaInscripcion.errors" class="invalid-feedback">
+                    <div *ngIf="f.FechaInscripcion.errors.required">La Fecha de Inscripcion es requerida</div>
+                 </div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Tema de Interes</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control"  formControlName="TemaInteres" placeholder="Tema de Interes">
+                  <input type="text" class="form-control"  formControlName="TemaInteres" [ngClass]="{ 'is-invalid': submitted && f.TemaInteres.errors }" placeholder="Tema de Interes">
+                  <div *ngIf="submitted && f.TemaInteres.errors" class="invalid-feedback">
+                    <div *ngIf="f.TemaInteres.errors.required">El Tema de Interes es requerido</div>
+                 </div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Estado</label>
                 <div class="col-sm-10">
-                  <input type="text" class="form-control"  formControlName="Estado" placeholder="Estados">
+                  <input type="text" class="form-control"  formControlName="Estado" [ngClass]="{ 'is-invalid': submitted && f.Estado.errors }" placeholder="Estados">
+                  <div *ngIf="submitted && f.Estado.errors" class="invalid-feedback">
+                    <div *ngIf="f.Estado.errors.required">El Estado es requerido</div>
+                 </div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">DNI</label>
                 <div class="col-sm-10">
-                  <input type="number" class="form-control"  formControlName="NroDNI" placeholder="DNI">
+                  <input type="number" class="form-control"  formControlName="NroDNI" [ngClass]="{ 'is-invalid': submitted && f.NroDNI.errors }" placeholder="DNI">
+                  <div *ngIf="submitted && f.NroDNI.errors" class="invalid-feedback">
+                    <div *ngIf="f.NroDNI.errors.required">El DNI es requerido</div>
+                 </div>
                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <button type="button" (click)="AddCliente()" class="btn btn-secondary" >Guardar</button>
-                    <button type="button" (click)="updateCliente()" class="btn btn-secondary " style="margin-left: 2%;">Editar</button>
-                    <button type="button" class="btn btn-outline-dark" style="margin-left: 2%;">Cancelar</button>
+                    <button type="button" *ngIf="!btneditar" (click)="AddCliente()" class="btn btn-secondary" >Guardar</button>
+                    <button type="button" *ngIf="btneditar" (click)="updateCliente()" class="btn btn-secondary " style="margin-left: 2%;">Editar</button>
+                    <button type="button" class="btn btn-outline-dark" style="margin-left: 2%;"(click)="resetFormulario()">Cancelar</button>
                 </div>
               </div>
           </form>

@@ -32,4 +32,11 @@ export class ApiClienteService {
   updateCliente(cliente:Cliente):Observable<Respuesta>{
     return this._http.put<Respuesta>(this.url+"Cliente",cliente,httpOption)
   }
+
+  //Creacion del metodo desactivar cliente
+  desactivarCliente(id: any):Observable<Respuesta>{
+    return this._http.delete<Respuesta>(this.url+"Cliente/"+id)
+  }
+
 }
+

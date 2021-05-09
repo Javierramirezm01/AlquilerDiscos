@@ -8,6 +8,6 @@ email: string;
 fechaNacimineto: Date;
 fechaInscripcion: Date;
 temaInteres: string;
-estado: string;
+estado: boolean;
 nroDNI: number;
 }
