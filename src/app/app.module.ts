@@ -8,7 +8,8 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { DataTablesModule } from "angular-datatables";
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'; //importacion del modulo api
+import { HttpClientModule } from '@angular/common/http';
+import { VentaComponent } from './venta/venta.component'; //importacion del modulo api
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http'; //importacion del modul
     AppComponent,
     HomeComponent,
     CdComponent,
-    ClientesComponent
+    ClientesComponent,
+    VentaComponent
   ],
   imports: [
     BrowserModule,
