@@ -1,4 +1,5 @@
-<div class="container" id="advanced-search-form">
+<div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-12">  
+  <div class="container" id="advanced-search-form">
     <ng-container *ngIf="!crearCd; else formCds">
         <button type="button" class="btn btn-dark btn-sm" (click)="mostrarCds()">Crear cd</button>
         <table datatable [dtOptions]="dtOptions" class="row-border hover">
@@ -77,3 +78,4 @@
           </form>
       </ng-template>
     </div>
+</div>

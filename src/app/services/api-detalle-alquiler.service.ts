@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {environment} from 'src/environments/environment'
-import { Observable } from 'rxjs';
 import { Respuesta } from '../models/respuesta';
+import { Observable } from 'rxjs';
+
 
 const httpOption = {
   headers: new HttpHeaders({
@@ -13,18 +14,21 @@ const httpOption = {
 @Injectable({
   providedIn: 'root'
 })
-export class ApiVentaService {
+export class ApiDetalleAlquilerService {
+  GetCliente() {
+    throw new Error('Method not implemented.');
+  }
 
   url:string = environment.baseUrl
 
   constructor(private _http: HttpClient) { }
 
-  
-  GetCliente():Observable<Respuesta>{
-    return this._http.get<Respuesta>(this.url+"Venta/Clientes")
+  GetCd():Observable<Respuesta>{
+    return this._http.get<Respuesta>(this.url+"DetalleAlquiler/Cds")
   }
 
-  GetProducto():Observable<Respuesta>{
-    return this._http.get<Respuesta>(this.url+"Venta/productos")
+  GetAlquiler():Observable<Respuesta>{
+    return this._http.get<Respuesta>(this.url+"DetalleAlquiler/Alquilers")
   }
+
 }

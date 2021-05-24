@@ -9,7 +9,9 @@ import { DataTablesModule } from "angular-datatables";
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
-import { VentaComponent } from './venta/venta.component'; //importacion del modulo api
+import { VentaComponent } from './venta/venta.component';
+import { AlquilerComponent } from './alquiler/alquiler.component';
+import { DetalleAlquilerComponent } from './detalle-alquiler/detalle-alquiler.component'; //importacion del modulo api
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { VentaComponent } from './venta/venta.component'; //importacion del modu
     HomeComponent,
     CdComponent,
     ClientesComponent,
-    VentaComponent
+    VentaComponent,
+    AlquilerComponent,
+    DetalleAlquilerComponent
   ],
   imports: [
     BrowserModule,

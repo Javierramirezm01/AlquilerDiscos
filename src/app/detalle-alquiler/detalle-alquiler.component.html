@@ -1,0 +1,55 @@
+<div class="container" id="advanced-search-form">
+    <button type="button" class="btn btn-dark btn-sm" (click)="crearDetalleAlquiler = false">Ver clientes</button>
+        <form [formGroup]= "formulario"> 
+            <div class="form-group row">
+              <label for="staticEmail" class="col-sm-2 col-form-label">Item</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="item" [ngClass]="{ 'is-invalid': submitted && f.item.errors }" placeholder="Item">
+                <div *ngIf="submitted && f.item.errors" class="invalid-feedback">
+                  <div *ngIf="f.item.errors.required">El item es requerido</div>
+               </div>
+              </div>
+            </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Dias de Prestamo</label>
+                <div class="col-sm-10">
+                  <input type="number" class="form-control"  formControlName="diasPrestamo" [ngClass]="{ 'is-invalid': submitted && f.diasPrestamo.errors }" placeholder="Dias de Prestamo">
+                  <div *ngIf="submitted && f.diasPrestamo.errors" class="invalid-feedback">
+                    <div *ngIf="f.diasPrestamo.errors.required">Los dias de Prestamo son requeridos</div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Fecha de Devolucion</label>
+                <div class="col-sm-10">
+                  <input type="date" class="form-control"  formControlName="fechaDevolucion" [ngClass]="{ 'is-invalid': submitted && f.fechaDevolucion.errors }" placeholder="Fecha de Devolucion">
+                  <div *ngIf="submitted && f.fechaDevolucion.errors" class="invalid-feedback">
+                    <div *ngIf="f.fechaDevolucion.errors.required">La Fecha de Devolucion es requerida</div>
+                 </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Cd</label>
+                <div class="col-sm-10">
+                  <select class="form-control"formControlName="CdId" multiple [ngClass]="{ 'is-invalid': submitted && f.CdId.errors }">
+                    <option *ngFor = "let item of lstCd; "[value]= "item.id" > {{item.nombre}} </option> 
+                    </select>
+                   </div>  
+                 </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Alquiler</label>
+                <div class="col-sm-10">
+                  <select class="form-control"formControlName="AlquilerId" [ngClass]="{ 'is-invalid': submitted && f.AlquilerId.errors }">
+                    <option *ngFor = "let item of lstAlquiler; "[value]= "item.id" > {{item.nombre}} </option> 
+                    </select>
+                   </div>  
+                 </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <button type="button"  class="btn btn-secondary" >Guardar</button>
+                    <button type="button" class="btn btn-outline-dark" style="margin-left: 2%;"(click)="resetFormulario()">Cancelar</button>
+                </div>
+              </div>
+          </form>
+</div>

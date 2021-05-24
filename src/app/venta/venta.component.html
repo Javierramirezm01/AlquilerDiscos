@@ -1,10 +1,10 @@
-<div class="container" id="advanced-search-form">
+<div class="container col-xs-12 col-md-offset-1 col-md-10 col-lg-12" id="advanced-search-form">
     <button type="button" class="btn btn-dark btn-sm" (click)="crearVenta = false">Ver clientes</button>
     <form [formGroup]= "formulario"> 
         <div class="form-group row">
           <label for="staticEmail" class="col-sm-2 col-form-label">Codigo de Venta</label>
           <div class="col-sm-10">
-            <input type="number" class="form-control" formControlName="CodigoVenta" [ngClass]="{ 'is-invalid': submitted && f.CodigoVenta.errors }" placeholder="CodigoVenta">
+            <input type="number" class="form-control" formControlName="CodigoVenta" [ngClass]="{ 'is-invalid': submitted && f.CodigoVenta.errors }" placeholder="Codigo de Venta">
             <div *ngIf="submitted && f.CodigoVenta.errors" class="invalid-feedback">
               <div *ngIf="f.CodigoVenta.errors.required">El Codigo de Venta es requerido</div>
            </div>
@@ -13,7 +13,7 @@
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Fecha de Venta</label>
             <div class="col-sm-10">
-              <input type="date" class="form-control"  formControlName="FechaVenta" [ngClass]="{ 'is-invalid': submitted && f.FechaVenta.errors }" placeholder="FechaVenta">
+              <input type="date" class="form-control"  formControlName="FechaVenta" [ngClass]="{ 'is-invalid': submitted && f.FechaVenta.errors }" placeholder="Fecha de Venta">
               <div *ngIf="submitted && f.FechaVenta.errors" class="invalid-feedback">
                 <div *ngIf="f.FechaVenta.errors.required">La Fecha de Venta es requerida</div>
               </div>
@@ -38,7 +38,7 @@
          <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label">Valor de Venta</label>
             <div class="col-sm-10">
-              <input type="number" class="form-control"  formControlName="ValorVenta" [ngClass]="{ 'is-invalid': submitted && f.ValorVenta.errors }" placeholder="ValorVenta">
+              <input type="number" class="form-control"  formControlName="ValorVenta" [ngClass]="{ 'is-invalid': submitted && f.ValorVenta.errors }" placeholder="Valor de Venta">
               <div *ngIf="submitted && f.ValorVenta.errors" class="invalid-feedback">
                 <div *ngIf="f.ValorVenta.errors.required">El Valor de Venta es requerido</div>
               </div>

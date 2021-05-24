@@ -41,7 +41,6 @@ export class VentaComponent implements OnInit {
     {
      this.lstClientes = response.datos;
     }
-   
   })
       
   
