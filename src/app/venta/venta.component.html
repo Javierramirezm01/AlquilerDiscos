@@ -1,5 +1,37 @@
-<div class="container col-xs-12 col-md-offset-1 col-md-10 col-lg-12" id="advanced-search-form">
-    <button type="button" class="btn btn-dark btn-sm" (click)="crearVenta = false">Ver clientes</button>
+<div class="container" id="advanced-search-form">
+<ng-container *ngIf= "!crearVenta else formVenta">
+  <button type="button" class="btn btn-dark btn-sm" (click)="crearVenta = true">Crear ventas</button>
+  <table datatable [dtOptions]="dtOptions" class="row-border hover">
+    <thead>
+      <tr>
+        <th>Código de venta</th>
+        <th>Fecha</th>
+        <th>Cliente</th>
+        <th>Valor venta</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of lstVenta">
+        <td>{{ item.codigoVenta }}</td>
+        <td>{{ item.fechaVenta.substring(0,10)}}</td>
+        <td>{{ item.cliente.nombre }}</td>
+        <td>{{ item.valorVenta }}</td>
+        <td>
+            <button type="button" class="btn btn-dark btn-sm" (click)="detalleVenta(item.detallesVentas, item.codigoVenta)">Detalle</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <div *ngIf = "mostrarDetalle">
+    <button type="button" class="btn btn-dark btn-sm" (click)="mostrarDetalle = false">Ocultar detalle</button>
+    <app-detalle-venta [lstDetalle]= detallesVentas [codigo]= codigo_Venta></app-detalle-venta>
+  </div>
+</ng-container>
+<ng-template #formVenta>
+    <button type="button" class="btn btn-dark btn-sm" (click)="crearVenta = false">Ver ventas</button>
     <form [formGroup]= "formulario"> 
         <div class="form-group row">
           <label for="staticEmail" class="col-sm-2 col-form-label">Codigo de Venta</label>
@@ -47,9 +79,10 @@
           <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
-                <button type= "button" class="btn btn-secondary" >Guardar</button>
+                <button type= "button" (click)= "AddVenta()" class="btn btn-secondary" >Guardar</button>
                 <button type="button" class="btn btn-outline-dark" style="margin-left: 2%;"(click)="resetFormulario()">Cancelar</button>
             </div>
           </div>
       </form>
+    </ng-template>
 </div>

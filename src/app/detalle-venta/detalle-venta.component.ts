@@ -1,23 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-detalle-alquiler',
-  templateUrl: './detalle-alquiler.component.html',
-  styleUrls: ['./detalle-alquiler.component.css']
+  selector: 'app-detalle-venta',
+  templateUrl: './detalle-venta.component.html',
+  styleUrls: ['./detalle-venta.component.css']
 })
-
-export class DetalleAlquilerComponent implements OnInit {
+export class DetalleVentaComponent implements OnInit {
   dtOptions: DataTables.Settings = {};
   @Input() lstDetalle:any;
   @Input() codigo:number;
-  constructor( ) {}
+  constructor() { }
 
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
       pageLength: 10
     };
-    
   }
-    
+
 }

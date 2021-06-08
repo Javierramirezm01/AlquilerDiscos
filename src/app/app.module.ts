@@ -11,7 +11,8 @@ import {ReactiveFormsModule} from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http';
 import { VentaComponent } from './venta/venta.component';
 import { AlquilerComponent } from './alquiler/alquiler.component';
-import { DetalleAlquilerComponent } from './detalle-alquiler/detalle-alquiler.component'; //importacion del modulo api
+import { DetalleAlquilerComponent } from './detalle-alquiler/detalle-alquiler.component';
+import { DetalleVentaComponent } from './detalle-venta/detalle-venta.component'; //importacion del modulo api
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { DetalleAlquilerComponent } from './detalle-alquiler/detalle-alquiler.co
     ClientesComponent,
     VentaComponent,
     AlquilerComponent,
-    DetalleAlquilerComponent
+    DetalleAlquilerComponent,
+    DetalleVentaComponent
   ],
   imports: [
     BrowserModule,

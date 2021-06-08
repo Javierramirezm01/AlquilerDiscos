@@ -1,5 +1,40 @@
 <div class="container" id="advanced-search-form">
-    <button type="button" class="btn btn-dark btn-sm" (click)="crearAlquiler = false">Ver clientes</button>
+  <ng-container *ngIf= "!crearAlquiler else formAlquiler">
+  <button type="button" class="btn btn-dark btn-sm" (click)="crearAlquiler = true">Crear Alquileres</button>
+  <table datatable [dtOptions]="dtOptions" class="row-border hover">
+    <thead>
+      <tr>
+        <th>Numero de Alquiler</th>
+        <th>Fecha de alquiler</th>
+        <th>Valor de alquiler</th>
+        <th>Cliente</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of lstAlquiler">
+        <td>{{ item.nroAlquiler }}</td>
+        <td>{{ item.fechaAlquiler.substring(0,10)}}</td>
+        <td>{{ item.valorAlquiler }}</td>
+        <td>{{ item.cliente.nombre }}</td>
+        <td>
+            <button type="button" class="btn btn-dark btn-sm" (click)="detalleAlquiler(item.detallesAlquiler, item.codigoVenta)">Detalle</button>
+            <button *ngIf= "item.fechaAlquiler < fechaActual" type="button" class="btn btn-outline-danger btn-sm" style="margin-left: 1%;" (click)="sancionar(item.nroAlquiler, item.cliente,nombre)">Sancionar</button>
+            <!-- <button *ngIf= "item.fechaVenta < fechaActual" type="button" class="btn btn-outline-danger btn-sm" style="margin-left: 1%;" (click)="sancionar(item.cliente.Id, item.Id)">Sancionar</button> -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <br>
+
+  <div *ngIf = "mostrarDetalle">
+    <button type="button" class="btn btn-dark btn-sm" (click)="mostrarDetalle = false">Ocultar detalle</button>
+    <app-detalle-venta [lstDetalle]= detallesAlquiler [codigo]= codigo_Venta></app-detalle-venta>
+  </div>
+
+</ng-container>
+<ng-template #formAlquiler>
+    <button type="button" class="btn btn-dark btn-sm" (click)="crearAlquiler = false">Ver Alquileres</button>
         <form [formGroup]= "formulario"> 
             <div class="form-group row">
               <label for="staticEmail" class="col-sm-2 col-form-label">Numero Alquiler</label>
@@ -18,6 +53,14 @@
                     <div *ngIf="f.fechaAlquiler.errors.required">La Fecha de Alquiler es requerida</div>
                   </div>
                 </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Productos</label>
+                <div class="col-sm-10">
+                    <select class="form-control"formControlName="ProductoIds" multiple [ngClass] ="{ 'is-invalid': submitted && f.ProductoIds.errors }">
+                        <option *ngFor = "let item of lstProductos; "[value]= "item.id" > {{item.nombre}} </option> 
+                    </select>
+                 </div>
               </div>
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label">Valor del Alquiler</label>
@@ -39,9 +82,10 @@
               <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label"></label>
                 <div class="col-sm-10">
-                    <button type="button"  class="btn btn-secondary" >Guardar</button>
+                    <button type="button" (click)= "AddAlquiler()" class="btn btn-secondary" >Guardar</button>
                     <button type="button" class="btn btn-outline-dark" style="margin-left: 2%;"(click)="resetFormulario()">Cancelar</button>
                 </div>
               </div>
           </form>
+        </ng-template>
 </div>

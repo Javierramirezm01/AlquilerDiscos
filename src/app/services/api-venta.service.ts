@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {environment} from 'src/environments/environment'
 import { Observable } from 'rxjs';
 import { Respuesta } from '../models/respuesta';
+import { Venta } from '../models/Venta';
 
 const httpOption = {
   headers: new HttpHeaders({
@@ -26,5 +27,13 @@ export class ApiVentaService {
 
   GetProducto():Observable<Respuesta>{
     return this._http.get<Respuesta>(this.url+"Venta/productos")
+  }
+
+  AddVenta(venta: Venta):Observable<Respuesta>{
+    return this._http.post<Respuesta>(this.url+"Venta",venta, httpOption);
+  }
+
+  GetVenta():Observable<Respuesta>{
+    return this._http.get<Respuesta>(this.url+"Venta")
   }
 }

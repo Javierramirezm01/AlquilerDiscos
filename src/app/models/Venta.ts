@@ -1,7 +1,7 @@
 export class Venta {
     id: number;
     codigoVenta: number;
-    FechaVenta: Date;
+    fechaVenta: Date;
     clienteId: number;
     productoIds:number[];
     valorVenta: number;

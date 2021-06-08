@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {environment} from 'src/environments/environment'
 import { Respuesta } from '../models/respuesta';
 import { Observable } from 'rxjs';
+import { Alquiler } from '../models/alquiler';
 
 const httpOption = {
   headers: new HttpHeaders({
@@ -21,6 +22,17 @@ export class ApiAlquilerService {
 
   GetCliente():Observable<Respuesta>{
     return this._http.get<Respuesta>(this.url+"Alquiler/Clientes")
+  }
+
+  GetAlquiler():Observable<Respuesta>{
+    return this._http.get<Respuesta>(this.url+"Alquiler")
+  }
+
+  AddAlquiler(alquiler: Alquiler):Observable<Respuesta>{
+    return this._http.post<Respuesta>(this.url+"Alquiler",alquiler, httpOption);
+  }
+  GetProducto():Observable<Respuesta>{
+    return this._http.get<Respuesta>(this.url+"Alquiler/productos")
   }
 
 }
